@@ -2,8 +2,10 @@
 #include "curand.h"
 #include "cublas_v2.h"
 
+#ifdef WIN32
 #ifdef CUDNN
 #pragma comment(lib, "cudnn.lib")  
+#endif
 #endif
 
 extern "C" {

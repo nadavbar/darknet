@@ -11,6 +11,10 @@
 #define SECRET_NUM -1234
 #define TWO_PI 6.2831853071795864769252866
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int *read_map(char *filename);
 void shuffle(void *arr, size_t n, size_t size);
 void sorta_shuffle(void *arr, size_t n, size_t size, size_t sections);
@@ -64,5 +68,8 @@ char *find_char_arg(int argc, char **argv, char *arg, char *def);
 int sample_array(float *a, int n);
 void print_statistics(float *a, int n);
 
+#ifdef __cplusplus
+}
 #endif
 
+#endif

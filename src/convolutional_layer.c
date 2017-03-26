@@ -8,8 +8,10 @@
 #include <stdio.h>
 #include <time.h>
 
+#ifdef WIN32
 #ifdef CUDNN
 #pragma comment(lib, "cudnn.lib")  
+#endif
 #endif
 
 #ifdef AI2

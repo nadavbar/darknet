@@ -3,13 +3,19 @@
 #include <string.h>
 #include <math.h>
 #include <assert.h>
+#ifdef WIN32
 #include "unistd.h"
+#else
+#include <unistd.h>
+#endif
 #include <float.h>
 #include <limits.h>
 
 #include "utils.h"
 
+#ifdef WIN32
 #pragma warning(disable: 4996)
+#endif
 
 int *read_map(char *filename)
 {

@@ -437,7 +437,7 @@ void show_image_cv(image p, const char *name)
         cvReleaseImage(&buffer);
     }
     cvShowImage(buff, disp);
-
+#ifdef WIN32
 	{
 		CvSize size;
 		{
@@ -458,7 +458,7 @@ void show_image_cv(image p, const char *name)
 		cvWriteFrame(output_video, disp);
 		printf("\n cvWriteFrame \n");
 	}
-
+#endif
     cvReleaseImage(&disp);
 }
 #endif

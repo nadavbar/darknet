@@ -2,15 +2,14 @@
 #ifndef NETWORK_H
 #define NETWORK_H
 
+#include "image.h"
 #include "layer.h"
+#include "data.h"
+#include "tree.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include "image.h"
-#include "data.h"
-#include "tree.h"
 
 typedef enum {
     CONSTANT, STEP, EXP, POLY, STEPS, SIG, RANDOM

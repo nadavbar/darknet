@@ -4,10 +4,14 @@
 #include "option_list.h"
 #include "blas.h"
 #include "classifier.h"
-//#include <sys/time.h>
+
+#ifndef WIN32
+#include <sys/time.h>
+#else
 #include <time.h>
 #include <winsock.h>
 #include "gettimeofday.h"
+#endif
 
 #ifdef OPENCV
 #include "opencv2/highgui/highgui_c.h"

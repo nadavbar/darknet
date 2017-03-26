@@ -6,6 +6,7 @@
 #include "box.h"
 #include "demo.h"
 
+#ifdef WIN32
 #ifdef OPENCV
 #pragma comment(lib, "opencv_core249.lib")  
 #pragma comment(lib, "opencv_imgproc249.lib")  
@@ -15,6 +16,7 @@
 //#pragma comment(lib, "opencv_video249.lib")  
 
 #include "opencv2/highgui/highgui_c.h"
+#endif
 #endif
 
 char *voc_names[] = {"aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"};
@@ -358,5 +360,5 @@ void run_yolo(int argc, char **argv)
     else if(0==strcmp(argv[2], "train")) train_yolo(cfg, weights);
     else if(0==strcmp(argv[2], "valid")) validate_yolo(cfg, weights);
     else if(0==strcmp(argv[2], "recall")) validate_yolo_recall(cfg, weights);
-    else if(0==strcmp(argv[2], "demo")) demo(cfg, weights, thresh, cam_index, filename, voc_names, 20, frame_skip, prefix);
+    else if(0==strcmp(argv[2], "demo")) demo(cfg, weights, thresh, cam_index, filename, voc_names, 20, frame_skip, prefix, .5);
 }
