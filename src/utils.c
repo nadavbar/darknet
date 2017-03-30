@@ -195,7 +195,7 @@ void top_k(float *a, int n, int k, int *index)
     }
 }
 
-void error(const char *s)
+DllExport void error(const char *s)
 {
     perror(s);
     assert(0);
@@ -255,7 +255,7 @@ void strip_char(char *s, char bad)
     s[len-offset] = '\0';
 }
 
-void free_ptrs(void **ptrs, int n)
+DllExport void free_ptrs(void **ptrs, int n)
 {
     int i;
     for(i = 0; i < n; ++i) free(ptrs[i]);
@@ -419,7 +419,7 @@ float mean_array(float *a, int n)
     return sum_array(a,n)/n;
 }
 
-void mean_arrays(float **a, int n, int els, float *avg)
+DllExport void mean_arrays(float **a, int n, int els, float *avg)
 {
     int i;
     int j;
@@ -532,7 +532,7 @@ int sample_array(float *a, int n)
     return n-1;
 }
 
-int max_index(float *a, int n)
+DllExport int max_index(float *a, int n)
 {
     if(n <= 0) return -1;
     int i, max_i = 0;

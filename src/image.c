@@ -161,7 +161,7 @@ void draw_bbox(image a, box bbox, int w, float r, float g, float b)
     }
 }
 
-image **load_alphabet()
+DllExport image **load_alphabet()
 {
     int i, j;
     const int nsize = 8;
@@ -177,7 +177,7 @@ image **load_alphabet()
     return alphabets;
 }
 
-void draw_detections(image im, int num, float thresh, box *boxes, float **probs, char **names, image **alphabet, int classes)
+DllExport void draw_detections(image im, int num, float thresh, box *boxes, float **probs, char **names, image **alphabet, int classes)
 {
     int i;
 
@@ -380,7 +380,7 @@ void normalize_image2(image p)
     free(max);
 }
 
-image copy_image(image p)
+DllExport image copy_image(image p)
 {
     image copy = p;
     copy.data = calloc(p.h*p.w*p.c, sizeof(float));
@@ -388,7 +388,7 @@ image copy_image(image p)
     return copy;
 }
 
-void rgbgr_image(image im)
+DllExport void rgbgr_image(image im)
 {
     int i;
     for(i = 0; i < im.w*im.h; ++i){
@@ -521,7 +521,7 @@ image load_image_cv(char *filename, int channels)
     return out;
 }
 
-image get_image_from_stream(CvCapture *cap)
+DllExport image get_image_from_stream(CvCapture *cap)
 {
     IplImage* src = cvQueryFrame(cap);
     if (!src) return make_empty_image(0,0,0);
@@ -610,7 +610,7 @@ image make_empty_image(int w, int h, int c)
     return out;
 }
 
-image make_image(int w, int h, int c)
+DllExport image make_image(int w, int h, int c)
 {
     image out = make_empty_image(w,h,c);
     out.data = calloc(h*w*c, sizeof(float));
@@ -1079,7 +1079,7 @@ float bilinear_interpolate(image im, float x, float y, int c)
     return val;
 }
 
-image resize_image(image im, int w, int h)
+DllExport image resize_image(image im, int w, int h)
 {
     image resized = make_image(w, h, im.c);   
     image part = make_image(w, im.h, im.c);
@@ -1214,7 +1214,7 @@ image load_image(char *filename, int w, int h, int c)
     return out;
 }
 
-image load_image_color(char *filename, int w, int h)
+DllExport image load_image_color(char *filename, int w, int h)
 {
     return load_image(filename, w, h, 3);
 }
@@ -1229,7 +1229,7 @@ image get_image_layer(image m, int l)
     return out;
 }
 
-float get_pixel(image m, int x, int y, int c)
+DllExport float get_pixel(image m, int x, int y, int c)
 {
     assert(x < m.w && y < m.h && c < m.c);
     return m.data[c*m.h*m.w + y*m.w + x];
@@ -1369,7 +1369,7 @@ void show_images(image *ims, int n, char *window)
     free_image(m);
 }
 
-void free_image(image m)
+DllExport void free_image(image m)
 {
     if(m.data){
         free(m.data);

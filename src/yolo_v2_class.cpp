@@ -22,6 +22,8 @@ extern "C" {
 
 #define FRAMES 3
 
+#ifdef GPU
+
 struct detector_gpu_t{
 	float **probs;
 	box *boxes;
@@ -201,3 +203,5 @@ YOLODLL_API std::vector<bbox_t> Detector::detect(image_t img, float thresh)
 
 	return bbox_vec;
 }
+
+#endif

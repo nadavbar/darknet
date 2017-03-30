@@ -10,6 +10,13 @@
 #include "list.h"
 #include "image.h"
 #include "tree.h"
+
+#ifdef WIN32
+#define DllExport   __declspec( dllexport )   
+#else
+#define DllExport
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -99,7 +106,7 @@ data load_all_cifar10();
 data load_data_writing(char **paths, int n, int m, int w, int h, int out_w, int out_h);
 
 list *get_paths(char *filename);
-char **get_labels(char *filename);
+DllExport char **get_labels(char *filename);
 void get_random_batch(data d, int n, float *X, float *y);
 data get_data_part(data d, int part, int total);
 data get_random_data(data d, int num);

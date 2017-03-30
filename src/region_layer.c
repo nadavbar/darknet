@@ -68,7 +68,7 @@ void resize_region_layer(layer *l, int w, int h)
 #endif
 }
 
-box get_region_box(float *x, float *biases, int n, int index, int i, int j, int w, int h)
+DllExport box get_region_box(float *x, float *biases, int n, int index, int i, int j, int w, int h)
 {
     box b;
     b.x = (i + logistic_activate(x[index + 0])) / w;

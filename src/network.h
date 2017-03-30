@@ -7,6 +7,12 @@
 #include "data.h"
 #include "tree.h"
 
+#ifdef WIN32
+#define DllExport   __declspec( dllexport )   
+#else
+#define DllExport
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -105,7 +111,7 @@ float train_network_sgd(network net, data d, int n);
 float train_network_datum(network net, float *x, float *y);
 
 matrix network_predict_data(network net, data test);
-float *network_predict(network net, float *input);
+DllExport float *network_predict(network net, float *input);
 float network_accuracy(network net, data d);
 float *network_accuracies(network net, data d, int n);
 float network_accuracy_multi(network net, data d, int n);
@@ -122,7 +128,7 @@ int get_predicted_class_network(network net);
 void print_network(network net);
 void visualize_network(network net);
 int resize_network(network *net, int w, int h);
-void set_batch_network(network *net, int b);
+DllExport void set_batch_network(network *net, int b);
 int get_network_input_size(network net);
 float get_network_cost(network net);
 

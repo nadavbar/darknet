@@ -581,7 +581,7 @@ int is_network(section *s)
             || strcmp(s->type, "[network]")==0);
 }
 
-network parse_network_cfg(char *filename)
+DllExport  network parse_network_cfg(char *filename)
 {
     list *sections = read_cfg(filename);
     dn_node *n = sections->front;
@@ -818,7 +818,7 @@ void save_connected_weights(layer l, FILE *fp)
     }
 }
 
-void save_weights_upto(network net, char *filename, int cutoff)
+DllExport void save_weights_upto(network net, char *filename, int cutoff)
 {
 #ifdef GPU
     if(net.gpu_index >= 0){
@@ -875,7 +875,7 @@ void save_weights_upto(network net, char *filename, int cutoff)
     }
     fclose(fp);
 }
-void save_weights(network net, char *filename)
+DllExport void save_weights(network net, char *filename)
 {
     save_weights_upto(net, filename, net.n);
 }
@@ -1005,7 +1005,7 @@ void load_convolutional_weights(layer l, FILE *fp)
 }
 
 
-void load_weights_upto(network *net, char *filename, int cutoff)
+DllExport void load_weights_upto(network *net, char *filename, int cutoff)
 {
 #ifdef GPU
     if(net->gpu_index >= 0){
@@ -1073,7 +1073,7 @@ void load_weights_upto(network *net, char *filename, int cutoff)
     fclose(fp);
 }
 
-void load_weights(network *net, char *filename)
+DllExport void load_weights(network *net, char *filename)
 {
     load_weights_upto(net, filename, net->n);
 }

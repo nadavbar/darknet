@@ -4,7 +4,7 @@
 #include "option_list.h"
 #include "utils.h"
 
-list *read_data_cfg(char *filename)
+DllExport list *read_data_cfg(char *filename)
 {
     FILE *file = fopen(filename, "r");
     if(file == 0) file_error(filename);
@@ -84,7 +84,7 @@ char *option_find(list *l, char *key)
     }
     return 0;
 }
-char *option_find_str(list *l, char *key, char *def)
+DllExport char *option_find_str(list *l, char *key, char *def)
 {
     char *v = option_find(l, key);
     if(v) return v;
@@ -92,7 +92,7 @@ char *option_find_str(list *l, char *key, char *def)
     return def;
 }
 
-int option_find_int(list *l, char *key, int def)
+DllExport int option_find_int(list *l, char *key, int def)
 {
     char *v = option_find(l, key);
     if(v) return atoi(v);

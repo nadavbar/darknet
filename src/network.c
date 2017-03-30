@@ -305,7 +305,7 @@ float train_network_batch(network net, data d, int n)
     return (float)sum/(n*batch);
 }
 
-void set_batch_network(network *net, int b)
+DllExport void set_batch_network(network *net, int b)
 {
     net->batch = b;
     int i;
@@ -454,7 +454,7 @@ void top_predictions(network net, int k, int *index)
 }
 
 
-float *network_predict(network net, float *input)
+DllExport float *network_predict(network net, float *input)
 {
 #ifdef GPU
     if(gpu_index >= 0)  return network_predict_gpu(net, input);

@@ -27,6 +27,7 @@ struct image_t {
 	float *data;				// pointer to the image data
 };
 
+#ifdef GPU
 
 class Detector {
 	std::shared_ptr<void> detector_gpu_ptr;
@@ -108,6 +109,6 @@ private:
 
 #endif	// OPENCV
 };
-
+#endif //GPU
 
 

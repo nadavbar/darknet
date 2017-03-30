@@ -221,7 +221,7 @@ void backward_detection_layer(const detection_layer l, network_state state)
     axpy_cpu(l.batch*l.inputs, 1, l.delta, 1, state.delta, 1);
 }
 
-void get_detection_boxes(layer l, int w, int h, float thresh, float **probs, box *boxes, int only_objectness)
+DllExport void get_detection_boxes(layer l, int w, int h, float thresh, float **probs, box *boxes, int only_objectness)
 {
     int i,j,n;
     float *predictions = l.output;

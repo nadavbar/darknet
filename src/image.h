@@ -8,6 +8,12 @@
 #include <math.h>
 #include "box.h"
 
+#ifdef WIN32
+#define DllExport   __declspec( dllexport )   
+#else
+#define DllExport
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -26,14 +32,14 @@ void draw_box_width(image a, int x1, int y1, int x2, int y2, int w, float r, flo
 void draw_bbox(image a, box bbox, int w, float r, float g, float b);
 void draw_label(image a, int r, int c, image label, const float *rgb);
 void write_label(image a, int r, int c, image *characters, char *string, float *rgb);
-void draw_detections(image im, int num, float thresh, box *boxes, float **probs, char **names, image **labels, int classes);
+DllExport void draw_detections(image im, int num, float thresh, box *boxes, float **probs, char **names, image **labels, int classes);
 image image_distance(image a, image b);
 void scale_image(image m, float s);
 image crop_image(image im, int dx, int dy, int w, int h);
 image random_crop_image(image im, int w, int h);
 image random_augment_image(image im, float angle, float aspect, int low, int high, int size);
 void random_distort_image(image im, float hue, float saturation, float exposure);
-image resize_image(image im, int w, int h);
+DllExport image resize_image(image im, int w, int h);
 image resize_min(image im, int min);
 image resize_max(image im, int max);
 void translate_image(image m, float s);
@@ -46,7 +52,7 @@ void exposure_image(image im, float sat);
 void distort_image(image im, float hue, float sat, float val);
 void saturate_exposure_image(image im, float sat, float exposure);
 void hsv_to_rgb(image im);
-void rgbgr_image(image im);
+DllExport void rgbgr_image(image im);
 void constrain_image(image im);
 void composite_3d(char *f1, char *f2, char *out, int delta);
 int best_3d_shift_r(image a, image b, int min, int max);
@@ -68,16 +74,16 @@ void show_image_collapsed(image p, char *name);
 
 void print_image(image m);
 
-image make_image(int w, int h, int c);
+DllExport image make_image(int w, int h, int c);
 image make_random_image(int w, int h, int c);
 image make_empty_image(int w, int h, int c);
 image float_to_image(int w, int h, int c, float *data);
-image copy_image(image p);
+DllExport image copy_image(image p);
 image load_image(char *filename, int w, int h, int c);
-image load_image_color(char *filename, int w, int h);
-image **load_alphabet();
+DllExport image load_image_color(char *filename, int w, int h);
+DllExport image **load_alphabet();
 
-float get_pixel(image m, int x, int y, int c);
+DllExport float get_pixel(image m, int x, int y, int c);
 float get_pixel_extend(image m, int x, int y, int c);
 void set_pixel(image m, int x, int y, int c, float val);
 void add_pixel(image m, int x, int y, int c, float val);
@@ -85,7 +91,7 @@ float bilinear_interpolate(image im, float x, float y, int c);
 
 image get_image_layer(image m, int l);
 
-void free_image(image m);
+DllExport void free_image(image m);
 void test_resize(char *filename);
 
 #ifdef __cplusplus
